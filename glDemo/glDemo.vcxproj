@@ -150,6 +150,7 @@
     <ClInclude Include="PrincipleAxes.h" />
     <ClInclude Include="RandomStars.h" />
     <ClInclude Include="star-vbo.h" />
+    <ClInclude Include="tetrahedron.h" />
     <ClInclude Include="TextureLoader.h" />
     <ClInclude Include="TextureQuad.h" />
     <ClInclude Include="TileMap.h" />
@@ -165,6 +166,7 @@
     <ClCompile Include="PrincipleAxes.cpp" />
     <ClCompile Include="RandomStars.cpp" />
     <ClCompile Include="star-vbo.cpp" />
+    <ClCompile Include="Tetrahedron.cpp" />
     <ClCompile Include="TextureLoader.cpp" />
     <ClCompile Include="TextureQuad.cpp" />
     <ClCompile Include="TileMap.cpp" />

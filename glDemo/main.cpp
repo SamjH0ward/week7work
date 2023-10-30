@@ -6,6 +6,7 @@
 #include "AIMesh.h"
 #include "Cube.h"
 #include "2DExamples.h"
+#include "tetrahedron.h"
 
 
 using namespace std;
@@ -24,8 +25,10 @@ double				prevMouseX, prevMouseY;
 // Scene objects
 CGPrincipleAxes* principleAxes = nullptr;
 Cube* cube = nullptr;
+Tetrahedron* tetrahedron = nullptr;
 AIMesh* creatureMesh = nullptr;
 AIMesh* planetMesh = nullptr;
+AIMesh* duckMesh = nullptr;
 
 // Window size
 const unsigned int initWidth = 512;
@@ -113,10 +116,16 @@ int main() {
 	principleAxes = new CGPrincipleAxes();
 
 	cube = new Cube();
+	tetrahedron = new Tetrahedron();
 
 	creatureMesh = new AIMesh(string("Assets\\beast\\beast.obj"));
 	if (creatureMesh) {
 		creatureMesh->addTexture(string("Assets\\beast\\beast_texture.bmp"), FIF_BMP);
+	}
+
+	duckMesh = new AIMesh(string("Assets\\duck\\rubber_duck_toy_4k.obj"));
+	if (duckMesh) {
+		duckMesh->addTexture(string("Assets\\duck\\rubber_duck_toy_diff_4k.jpg"), FIF_JPEG);
 	}
 
 
@@ -197,7 +206,16 @@ void renderScene()
 
 #endif
 
-#if 1
+#if 0
+
+	// Render cube - no modelling transform so leave cameraTransform set in OpenGL and render
+	glLoadMatrixf((GLfloat*)&cameraTransform);
+	glDisable(GL_CULL_FACE);
+	tetrahedron->render();
+
+#endif
+
+#if 0
 	
 	if (creatureMesh) {
 
@@ -220,6 +238,22 @@ void renderScene()
 		planetMesh->render();
 		planetMesh->postRender();
 	}
+#endif
+
+#if 1
+
+	if (duckMesh) {
+
+		// Setup transforms
+		glLoadMatrixf((GLfloat*)&cameraTransform);
+
+		duckMesh->preRender();
+		duckMesh->render();
+		duckMesh->postRender();
+	}
+
+
+	
 #endif
 
 }
